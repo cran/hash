@@ -1,0 +1,98 @@
+TODO:
+
+ - Get rm working correctly so that a call to clear is not needed before the call
+   to rm.  See the bookmarked link of how this is managed.
+
+ - 'delete' as an alias for del to match Perl dictionary lingo.
+
+ - Coersion functions as.vector, pairlist, as.data.frame, as.environment, as.list
+
+ x Modify arguments to 'hash' to be named ( x, key, value ) ? 
+      ( x , value )?  (...) and pass the lot to set()?  And let set sort it out?
+
+ - Generics: 
+     set    : can this be replaced by [ or [[
+     get    : "
+       we can probably get rid of get, set but will need to create them as 
+       hidden functions in the hash package: hash::get and hash::set
+       Should 
+         h[[key]] <- NULL 
+         h[, key] <- NULL
+         h$key    <- NULL   
+       erase the items as it does for data.frames?  Yes. 
+
+     items  : as.list
+        this is a base function.  The methods should closely mirror the base 
+        function.
+
+     length : needed (keep)
+        
+
+     keys   : same as names?
+     values : [] [[]] 
+     del    : same as rm -- see items 1 and 2 above
+     clear  : same as new
+     show   : 
+     has-key: same as exists
+
+     summary: create 
+
+     methods: [[ [ $ keys values( no different from accessors )
+              del clear show has.key show
+   x remove : items, set, get 
+      - if we remove set and get as methods ... then we should have them 
+        as functions in the class.  
+
+  - other coercions : 
+       as.environment,  not possible without clobbering base h@env anyhow 
+       as.data.frame,   yes
+       as.vector ,      yes
+      
+  - test functions    
+       is.hash : object is a hash
+       is.vector : test values to see if they are expressible as a vector
+       is.list   : "
+
+ - Implement clear as initializing of hash rather than rm
+
+ - how many accessors do we need?  get, values, $, [, [[ .
+   get and values are essensially the same.  
+     What about values(h) <- x?
+     or keys(h) <- x
+   should these be viable replacement functions as well?
+   - How do we use set to accomodate setting from data.frame? list? environment? 
+     and hashes?  append( hash, list or data.frame or env or hash ) to add
+     Then we have to be more explicit ... h[[keys]] <- values etc.
+  
+ - what about names(h) ? and ls(h) ?
+   there is  a potential problems as both names and ls might imply that there is 
+   an order to the hash which there might not be.
+
+ - IxHash : Indexed Hash
+
+ - Implement Judy Hash.
+
+ - Is there a abstract version of the hash where keys can contain muliple values?
+     how would this be implemented as an md5hash of the args?
+     h[[ vector ]] <- values ?  
+     How can we make each of the keys searchable?  i.e. get all where the second
+     key field = 7.  Each of the key fields would have to be hashed?  
+                           
+ x Rename slot x to .env.  
+   Although a class cannot inherit from 'environment' 
+     If we name the environment slot .Data, we cannot set it with the constructor
+     'new'.  Calling new( "hash", .Data = new.env( ... ) result in the following
+     warning ...
+     Error in initialize(value, ...) : 
+        initialize method returned an object of class "environment" instead of 
+        the required class "foo"
+     The object is then class environment.  
+     Other option call the slot 'env' or 'Data' or 'hash' 
+     '.Data' cannot be set.  
+     So we have: 
+        h@hash, x@hash, hash@hash
+        h@env,  x@env,  hash@env
+        h@data, x@data, hash@data
+    Personally I like env.  hash is too generic and confusing.  data is too generic
+
+  
