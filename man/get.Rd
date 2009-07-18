@@ -1,6 +1,9 @@
 \name{.get}
+
 \alias{.get}
+
 \title{ Get values from a hash }
+
 \description{
 
     Returns the values of a hash. By default, it attempts to simplify the 
@@ -16,6 +19,7 @@
 \usage{
     .get(hash, keys, ... )
 }
+
 \arguments{
   \item{hash}{ A \code{\link{hash}} object. }
   \item{keys}{ A vector coerced to valid key names by \code{\link{validate.key}} }
@@ -34,15 +38,17 @@
 \value{
   A list or vector of hash values in 
 }
+
 \author{ Christopher Brown }
+
 \seealso{ 
   See Also \code{\link{hash}}, \code{\link{.set}}, \code{\link{sapply}} 
 }
 
 
 \examples{
-    h <- hash( letters, 1:26 )
-    .get( h, "b" )  # 2
+  h <- hash( letters, 1:26 )
+ .get( h, "b" )  # 2
 }
 
 \keyword{ methods }

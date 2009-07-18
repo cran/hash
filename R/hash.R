@@ -6,9 +6,9 @@
 # emulate a native class that is missing from the R Specification.
 # 
 # TODO:
-#   - Add indexing function to emulate an ordered hash.  
 #
-#   CONTAINS: hash(class), hash(constuctor), hash(accessors) $ [ [[
+# CONTAINS: hash(class), hash(constuctor), hash(accessors) $ [ [[
+#
 # --------------------------------------------------------------------- 
 setClass( 
 	"hash", 
@@ -21,18 +21,36 @@ setClass(
 #   Takes an optional 1 or two parameter
 #   DEPENDS on method set
 # -----------------------------------------------------------------------------
-hash <- function( keys=NULL, values=NULL ) {
-	
+hash <- function( ... ) {
+
+  li <- list(...)  
+
   # INITIALIZE A NEW HASH   
-	h <- new( 
-        "hash", 
-        env = new.env( hash = TRUE , parent=emptyenv() )  
-    )
+  h <- new( 
+    "hash", 
+     env = new.env( hash = TRUE , parent=emptyenv() )  
+  )
 
-    if ( ! is.null(keys) && ! is.null(values) ) 
-        .set( h, keys, values )
+  if ( length(li) >  0  ) { 
+  
+    # TODO: construct from hash and environment objects.
+    # if ( class(li[[1]]) == 'hash' ) {
+    #  h <- li[[1]]
+    #  li <- li[-1]
+    # } else 
+    # 
+    #if ( class(li[[1]]) == 'environment' ) {
+    #  h <- new( "hash", env=li[[1]] )
+    #  li <- li[-1]
+    #}
 
-	return(h)
+    if( length(li) > 0 ) .set( h, ... )
+
+
+  }
+
+  return(h)
+
 }
 	
 
@@ -66,17 +84,32 @@ hash <- function( keys=NULL, values=NULL ) {
 #   This should implement a hash slice.
 # --------------------------------------------------------------------- 
 # getGeneric("[<-")
+
 setReplaceMethod(
 	"[" ,
 	signature(
-		x = "hash" ,
-		i = "ANY" ,
-		j = "missing" ,
-    value = "ANY" 
+	  x = "hash" ,
+	  i = "ANY" ,
+	  j = "missing" ,
+      value = "ANY" 
 	) ,
 	function( x, i, ...,  value ) {
 	  .set( x, i, value, ...  )
 	  return( x )
+    }
+)
+
+setReplaceMethod(
+    "[" ,
+    signature(
+      x = "hash" ,
+      i = "ANY" ,
+      j = "missing" ,
+      value = "NULL"
+    ) ,
+    function( x, i, ...,  value ) {
+      del( i, x )
+      return( x )
     }
 )
   
@@ -86,6 +119,7 @@ setReplaceMethod(
 # h[ "foo" ] <- letters # Assigns letters, a vector to "foo"
 # h[ letters ] <- 1:26
 # h[ keys ] <- value
+# 
 
 
 # ---------------------------------------------------------------------
@@ -100,7 +134,7 @@ setMethod(
   
 
 setReplaceMethod(
-	"$",
+  "$",
   signature=signature(
   	x="hash",
   	name="ANY",
@@ -112,7 +146,21 @@ setReplaceMethod(
   }
 ) 
 
-# j <- new( "hash" )
+# CASE: NULL value
+setReplaceMethod(
+  "$",
+  signature=signature(
+    x="hash",
+    name="ANY",
+    value="NULL"
+    ),
+  function(x, name, value) {
+    del(name,x)
+    # assign( name, value, envir = x@env )
+    x
+  }
+)
+
 
 # ---------------------------------------------------------------------
 #
@@ -121,7 +169,7 @@ setMethod(
   "[[",
   signature( x="hash", i="ANY", j="missing" ) ,
   function(x,i, ...) 
-    return( .get( x, i, ...) ) 
+    return( .get( x, i, ..., USE.NAMES = FALSE ) ) 
 )
 
 setReplaceMethod(
@@ -132,4 +180,26 @@ setReplaceMethod(
     return( x )
   }
 )
+
+# CASE: value=NULL
+setReplaceMethod(
+  "[[",
+  signature( x="hash", i="ANY", j="missing", value="NULL" ) ,
+  function(x,i,value) {
+    # .set( x, i, value  )
+    del( i, x )
+    return( x )
+  }
+)
+
+# ---------------------------------------------------------------------
+# MISC. FUNCTIONS
+# ---------------------------------------------------------------------
+
+is.hash <- function(x) is( x, "hash" )
+
+as.list.hash <- function(x, all.names=FALSE, ...) as.list( x@env, all.names, ... )
+
+
+
 

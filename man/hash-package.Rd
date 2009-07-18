@@ -15,15 +15,15 @@
 }
 
 \details{
-    \tabular{ll}{
+  \tabular{ll}{
     Package: \tab hash\cr
     Type: \tab Package\cr
-    Version: \tab 0.22\cr
-    Date: \tab 2009-04-12\cr
+    Version: \tab 0.30\cr
+    Date: \tab 2009-07-18\cr
     License: \tab GPL 2+\cr
     LazyLoad: \tab yes\cr
     Depends: \tab methods\cr
-    }
+  }
 }
 
 \author{
@@ -40,20 +40,23 @@ Maintainer: Christopher Brown <cbrown -at- opendatagroup -dot- com>
 }
 
 \seealso{
-  See also \code{\link{hash} } and \code{\link{environment} }
+  See also \code{\link{hash} }, \code{\link{hash-accessors}} and 
+  \code{\link{environment} }
 }
 
 \examples{
 
-    h <- hash( letters, 1:26 )
-    h$a # 1
+  h <- hash( keys=letters, values=1:26 )
+  h <- hash( letters, 1:26 )
 
-    h$foo <- "bar"
-    h[ "foo" ] 
-    h[[ "foo" ]]
+  h$a # 1
 
-    clear(h)
-    rm(h)
+  h$foo <- "bar"
+  h[ "foo" ] 
+  h[[ "foo" ]]
+
+  clear(h)
+  rm(h)
 
 }
 

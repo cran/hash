@@ -5,13 +5,14 @@
 \alias{has.key,ANY,hash-method}
 
 \title{  Test for existence of key(s) on a hash }
+
 \description{
     \code{has.key} returns a logical vector as long as \code{keys}, indicating
     which keys are defined on the hash.  
 }
 
 \usage{
-has.key(key, hash, ...)
+  has.key(key, hash, ...)
 }
 
 \arguments{
@@ -20,7 +21,9 @@ has.key(key, hash, ...)
   \item{...}{ arguments passed to further functions }
 }
 
-\details{}
+\details{
+  None.
+}
 
 \value{
   \item{logical}{

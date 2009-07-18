@@ -15,9 +15,9 @@ setMethod(
 )
 
 #  ALIAS delete
-# setGeneric( "delete", function( x, hash ) standardGeneric("delete") }
-# setMethod(
-#    "del",
-#    signature( x, "hash" ) ,
-#    function(x,hash) { del(x,hash) }
-# )
+setGeneric( "delete", function( x, hash ) { standardGeneric("delete") } )
+setMethod(
+  "delete",
+  signature( "ANY", "hash" ) ,
+    function(x,hash) { del(x,hash) }
+)

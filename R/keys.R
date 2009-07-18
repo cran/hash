@@ -2,8 +2,12 @@
 # keys.S
 # METHOD: keys
 # -----------------------------------------------------------------------------
-setGeneric( "keys", function(hash) standardGeneric("keys") )
+setGeneric( "keys", function(x) standardGeneric("keys") )
 setMethod( "keys" , "hash" ,
-	function(hash) ls(hash@env)
+	function(x) ls(x@env)
 )
+
+names.hash <- function(x) keys(x)
+
+
 

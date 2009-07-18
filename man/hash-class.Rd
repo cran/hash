@@ -5,11 +5,13 @@
 \title{Class "hash" }
 \description{ 
 
-    Implements a S4 hash class in R similar to hashes / associatesd arrays / 
-    dictionaries in languages.  As much as possible these constructs have 
-    been given an R type interface. As much as possible, hash objects are 
-    made to emulate a native data structure like data.frames. Accessors 
-    are defined for \code{\$}, \code{[} and \code{[[}.
+  Implements a S4 hash class in R similar to hashes / associatesd arrays / 
+  dictionaries in languages.  As much as possible these constructs have 
+  been given an R type interface.
+	
+  Hash construction is flexible and takes several syntaxes.   
+
+  Accessors are defined for \code{\$}, \code{[} and \code{[[}.
     
 }
 
@@ -22,7 +24,7 @@
 }
 
 \section{Extends}{
-None by design.
+  None by design.
 }
 
 
@@ -44,18 +46,32 @@ None by design.
   }
 }
 
-\references{  }
+\references{ 
+
+	http://en.wikipedia.org/wiki/Hash_table
+
+	http://en.wikipedia.org/wiki/Associative_array
+
+}
 \author{ Christopher Brown }
+
 \note{ 
+
+  For lists of any appreciable length hashes provide much quicker 
+  element access than named vectors.
+
   Objects of class \code{hash} do not release memory with a call to 
   \code{rm}.  \code{clear} must be called before \code{rm} to properly
   release the memory.
+
 }
 
 \seealso{
 	See also as \code{\link{environment}}. 
 }
+
 \examples{
-showClass("hash")
+  showClass("hash")
 }
+
 \keyword{classes}

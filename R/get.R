@@ -22,9 +22,7 @@
 
 .get <- 
   function( hash, keys, ... ) {
-
     sapply( validate.key(keys), get, env=hash@env, ... )
-
   } 
 
 

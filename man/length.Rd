@@ -7,11 +7,11 @@
 \title{ Returns the number of items in a hash }
 
 \description{
-    Returns the number of items in a hash
+  Returns the number of items in a hash
 }
 
 \details{
-    Return the number of items in the hash
+  Return the number of items in the hash
 }
 
 \value{
