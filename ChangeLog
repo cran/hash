@@ -1,0 +1,7 @@
+
+2009-09-04 Version 0.40 (cbrown)
+  - R/get.R: Added drop to reduce to lowest dimension by default.
+  + R/invert.R: 
+    + invert method added.
+	+ inverted.hash function added.
+

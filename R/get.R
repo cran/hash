@@ -21,8 +21,10 @@
 # ---------------------------------------------------------------------
 
 .get <- 
-  function( hash, keys, ... ) {
-    sapply( validate.key(keys), get, env=hash@env, ... )
+  function( hash, keys, drop=TRUE,... ) {
+    g <- sapply( validate.key(keys), get, env=hash@env, ... )
+    if( drop ) g <- drop(g)
+    return(g)
   } 
 
 

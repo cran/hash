@@ -18,8 +18,8 @@
   \tabular{ll}{
     Package: \tab hash\cr
     Type: \tab Package\cr
-    Version: \tab 0.30\cr
-    Date: \tab 2009-07-18\cr
+    Version: \tab 0.40\cr
+    Date: \tab 2009-09-04\cr
     License: \tab GPL 2+\cr
     LazyLoad: \tab yes\cr
     Depends: \tab methods\cr

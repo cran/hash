@@ -17,12 +17,13 @@
 }
 
 \usage{
-    .get(hash, keys, ... )
+    .get(hash, keys, drop=TRUE, ... )
 }
 
 \arguments{
   \item{hash}{ A \code{\link{hash}} object. }
   \item{keys}{ A vector coerced to valid key names by \code{\link{validate.key}} }
+  \item{drop}{ Whether to reduce the results to the lowest dimension }
   \item{...}{ Further arguments supplied to \code{\link{sapply}}. }
 }
 
