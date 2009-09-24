@@ -1,7 +1,21 @@
+2009-09-28 (cbrown)
+  + R/hash.R: 
+    - Fixed format of hash accessors.  Now hashes can contain hashes.
+    - Deprecated use of [[ with multipe keys.
+
+  + R/show.R: Now aliases format 
+  + R/format.R: added
+  + R/zzz.R: added graphical Open Data Logo
+  + R/print.R: added
+
+
+2009-09-04 (cbrown)
+  - R/zzz.R: added Open Data message
 
 2009-09-04 Version 0.40 (cbrown)
   - R/get.R: Added drop to reduce to lowest dimension by default.
   + R/invert.R: 
     + invert method added.
 	+ inverted.hash function added.
+	
 

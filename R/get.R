@@ -27,5 +27,9 @@
     return(g)
   } 
 
+.get1 <-
+  function( hash, key, ... ) {
+    get( key, hash@env )
+  }
 
 

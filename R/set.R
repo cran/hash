@@ -20,7 +20,6 @@
 
         li <- list(...) 
 
-
       # EXPLICIT 'keys' AND 'values' ARGUMENTS
       #   .set( keys=letters, values=1:26 )
         if( identical( names(li) , c('keys', 'values') ) ) {
@@ -63,8 +62,8 @@
             length(keys) != length(values)
         ) {
             stop(
-                "\nKeys of length ", length( keys ),
-                " do not match values of length ", length( values )
+              "\nKeys of length ", length( keys ),
+              " do not match values of length ", length( values )
             )
         }
 
@@ -72,7 +71,8 @@
         if( length( keys ) == length( values ) ) {
 
             for( i in 1:length(keys) )
-                assign( keys[[i]], values[[i]], envir = hash@env )
+              assign( keys[[i]], values[[i]], envir = hash@env )
+              # assign( keys[[i]], hash( b=12 ), envir = hash@env )
 
         } else {
 

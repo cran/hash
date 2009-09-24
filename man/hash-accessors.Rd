@@ -51,7 +51,7 @@
   h[ letters[1:4] ]    # hash with a,b,c,d
   h[ letters[1:4] ] <- 4:1
 	
-  h[[ letters[1:4] ]] # c("a","b","c","d") 
+  h[[ "a" ]] # c("a","b","c","d") 
 
 }
 

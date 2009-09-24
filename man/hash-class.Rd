@@ -43,6 +43,8 @@
     \item{keys}{\code{signature(hash = "hash")}: ... }
     \item{length}{\code{signature(x = "hash")}: ... }
     \item{values}{\code{signature(x = "hash")}: ... }
+    \item{format}{\code{signature(x = "hash")}: ... }
+
   }
 }
 
