@@ -14,10 +14,6 @@
 #
 #  ---------------------------------------------------------------------
 
-# has.key <- 
-#  function( key, hash, ... ) sapply( key, exists, hash@env, ... )
-# setGeneric( "has.key" )
-
 setGeneric( 
     "has.key", 
     function( key, hash, ... ) standardGeneric( "has.key" ) 
@@ -28,6 +24,6 @@ setMethod(
     "has.key" ,
     signature( "ANY", "hash" ) ,
     function( key, hash, ... ) {
-      sapply( key, exists, hash@env, ... )
+      sapply( key, exists, hash@.Data, ... )
     }
 )

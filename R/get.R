@@ -22,14 +22,14 @@
 
 .get <- 
   function( hash, keys, drop=TRUE,... ) {
-    g <- sapply( validate.key(keys), get, env=hash@env, ... )
+    g <- sapply( make.keys(keys), get, env=hash@.Data, ... )
     if( drop ) g <- drop(g)
     return(g)
   } 
 
 .get1 <-
   function( hash, key, ... ) {
-    get( key, hash@env )
+    get( key, hash@.Data )
   }
 
 

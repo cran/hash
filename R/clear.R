@@ -13,7 +13,7 @@
 setGeneric( "clear", function(x) standardGeneric("clear") )
 
 setMethod( "clear" , "hash" ,
-	function(x) rm( list=keys(x), envir=x@env )
+   function(x) rm( list=keys(x), envir=x@.Data )
 )
 
 

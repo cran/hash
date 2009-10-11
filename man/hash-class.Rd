@@ -17,7 +17,7 @@
 
 \section{Slots}{
   \describe{ 
-     \item{\code{env}:}{ 
+     \item{\code{.xData}:}{ 
        Object of class \code{"environment"}.  This is the hashed environment 
        used for key-value storage. }
   }

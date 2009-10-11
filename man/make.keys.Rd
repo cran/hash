@@ -1,17 +1,17 @@
-\name{validate.key}
+\name{make.keys}
 
-\alias{validate.key}
+\alias{make.keys}
 
 \title{ creates/coerces objects to proper hash keys }
 
 \description{
-    Given an vector of any type, \code{validate.key} tries to coerce it into a
+    Given an vector of any type, \code{make.keys} tries to coerce it into a
     character vector that can be used as a hash key.  This is used internally
     by the hash package and should not be normally needed.
 }
 
 \usage{
-validate.key(key)
+make.keys(key)
 }
 
 \arguments{
@@ -36,8 +36,8 @@ A character vector of valid keys
 
 \examples{
 
-  validate.key( letters )
-  validate.key( 1:26 ) 
+  make.keys( letters )
+  make.keys( 1:26 ) 
 
 }
 

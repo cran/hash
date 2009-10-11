@@ -22,7 +22,7 @@
 
 \arguments{
   \item{hash}{ A \code{\link{hash}} object. }
-  \item{keys}{ A vector coerced to valid key names by \code{\link{validate.key}} }
+  \item{keys}{ A vector coerced to valid key names by \code{\link{make.keys}} }
   \item{drop}{ Whether to reduce the results to the lowest dimension }
   \item{...}{ Further arguments supplied to \code{\link{sapply}}. }
 }

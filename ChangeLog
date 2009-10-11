@@ -1,3 +1,18 @@
+
+2009-10-11 (cbrown) Version 1.0.2
+  + revert previous change allowing [[(hash) to accept multiple keys
+
+
+2009-10-09 (cbrown) Version 1.0.1  ( not released on CRAN )
+  + [[(hash) 
+    support for multiple supplied keys also passes ... to simplify
+  + now properly inherits from environment
+  + requires R>=2.9.0
+
+2009-09-30 (cbrown)
+  + validate.key rename make.keys
+    - This is more R-ish and more like the make.names function.
+
 2009-09-28 (cbrown)
   + R/hash.R: 
     - Fixed format of hash accessors.  Now hashes can contain hashes.

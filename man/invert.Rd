@@ -41,7 +41,7 @@ inverted.hash(...)
 }
 
 \seealso{
-See also \code{link{hash}} and \code{\link{validate.key}} 
+See also \code{link{hash}} and \code{\link{make.keys}} 
 }
 
 \examples{

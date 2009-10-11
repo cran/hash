@@ -10,7 +10,7 @@ setMethod(
 	"del" ,
 	signature( "ANY", "hash" ) ,
 	function ( x, hash ) {
-		rm( list=validate.key(x), envir=hash@env )
+		rm( list=make.keys(x), envir=hash@.Data )
 	}
 )
 

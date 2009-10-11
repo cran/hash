@@ -6,7 +6,7 @@
 setGeneric( "values", function(x, ...) standardGeneric( "values" ) )
 setMethod( "values", "hash", 
 	function(x, ...) { 
-        sapply( keys(x), get, x@env, ... )
+        sapply( keys(x), get, x@.Data, ... )
 	}
 ) 
 

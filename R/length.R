@@ -4,7 +4,7 @@
 #  ---------------------------------------------------------------------
 
 setMethod( "length" , "hash" ,
-    function(x) length( x@env )  
+    function(x) length( x@.Data )  
 )
 
 

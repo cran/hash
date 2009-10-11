@@ -1,14 +1,14 @@
 # -----------------------------------------------------------------------------
-# validate-key.R
+# make.keys.R
 #
-# FUNCTION: validate.key
+# FUNCTION: make.keys
 #
 #  Coerces arguments to a valid value that can be be passed to various hash 
 #  utilitites.
 #  
 # -----------------------------------------------------------------------------
 
-validate.key <- function(key) {
+make.keys <- function(key) {
 
 	key <- as.character( key )  
 

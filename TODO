@@ -1,14 +1,23 @@
 TODO:
+ - test for keys in $
+
+ - consider eliminating .get for get which 
+ - assign <==> set
+
+ x move @env to @.Data
+ NO- move @.Data to plain object: this should be explicit.
 
  x inverted.hash constructor function to directly create an inverted hash
 
  - Constructor method should handle hash and environment objects.
    what does hash( hash() ) give?  A ref to the hash.
 
- - Get rm working correctly so that a call to clear is not needed before the call
+ x Get rm working correctly so that a call to clear is not needed before 
+   the call: I do not think this is necessary any longer.
+   
    to rm.  See the bookmarked link of how this is managed. Detach?
 
- - 'delete' as an alias for del to match Perl dictionary lingo.
+ x 'delete' as an alias for del to match Perl dictionary lingo.
 
  - Coersion functions 
    - as.vector, 

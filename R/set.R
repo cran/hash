@@ -50,7 +50,7 @@
             values <- li[[2]]    
         }
 
-        keys <- validate.key(keys)
+        keys <- make.keys(keys)
 
         # cat( length(keys), ", ", keys, "\n" )
         # cat( length(values), ", ", values, "\n" )
@@ -71,17 +71,17 @@
         if( length( keys ) == length( values ) ) {
 
             for( i in 1:length(keys) )
-              assign( keys[[i]], values[[i]], envir = hash@env )
-              # assign( keys[[i]], hash( b=12 ), envir = hash@env )
+              assign( keys[[i]], values[[i]], envir = hash@.Data )
+              # assign( keys[[i]], hash( b=12 ), envir = hash@.Data )
 
         } else {
 
             if( length( keys ) == 1 )
-                assign( keys, values, envir = hash@env )
+                assign( keys, values, envir = hash@.Data )
 
             if( length( values ) == 1 )
                 for( i in 1:length(keys) )
-                    assign( keys[[i]], values, envir = hash@env )
+                    assign( keys[[i]], values, envir = hash@.Data )
         }
 
         return( invisible(NULL) )

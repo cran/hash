@@ -11,8 +11,8 @@
 #
 # --------------------------------------------------------------------- 
 setClass( 
-	"hash", 
-	representation( env="environment" ) 
+  "hash", 
+  contains = "environment"
 )
 
 
@@ -92,7 +92,8 @@ setMethod(
   "$" ,
    signature( "hash", "ANY" ) ,
    function( x, name ) {
-     get( validate.key( name ), x@env )
+
+     get( make.keys( name ), x@.Data )
    }
 )
   
@@ -105,12 +106,13 @@ setReplaceMethod(
   	value="ANY"
 	),
   function(x, name, value) {
-    assign( name, value, envir = x@env )
+    assign( name, value, envir = x@.Data )
     x
   }
 ) 
 
 # CASE: NULL value
+#   When assign a null values to a hash the key is deleted.
 setReplaceMethod(
   "$",
   signature=signature(
@@ -120,7 +122,6 @@ setReplaceMethod(
     ),
   function(x, name, value) {
     del(name,x)
-    # assign( name, value, envir = x@env )
     x
   }
 )
@@ -133,8 +134,10 @@ setMethod(
   "[[",
   signature( x="hash", i="ANY", j="missing" ) ,
   function(x,i, ...) {
-    if( length(i) != 1 ) stop( "Can only one hash value with [[. Several keys were provided" )
-    get( validate.key(i), x@env )
+    if( length(i) != 1 ) 
+      stop( "Can only one hash value with [[. Several keys were provided" )
+    get( make.keys(i), x@.Data )
+    # sapply( make.keys(i), function(k) get(k,x@.Data), ... )
   }
 )
 
@@ -164,7 +167,8 @@ setReplaceMethod(
 
 is.hash <- function(x) is( x, "hash" )
 
-as.list.hash <- function(x, all.names=FALSE, ...) as.list( x@env, all.names, ... )
+as.list.hash <- function(x, all.names=FALSE, ...) 
+  as.list( x@.Data, all.names, ... )
 
 
 

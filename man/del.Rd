@@ -23,7 +23,7 @@
   \item{x}{ 
     An object that will be coerced to valid key(s) to be removed from the hash. 
     \code{x} will be coerced to a valid hash keys using 
-    \code{\link{validate.key}}
+    \code{\link{make.keys}}
   }
 
   \item{hash}{ A \code{\link{hash}} object }
@@ -38,7 +38,7 @@
 \author{ Christopher Brown }
 
 \seealso{ 
-  See Also as \code{\link{hash}}, \code{\link{validate.key}}. 
+  See Also as \code{\link{hash}}, \code{\link{make.keys}}. 
 }
 
 \examples{

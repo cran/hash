@@ -11,7 +11,7 @@ setMethod(
   function(x) {
     h <- hash() 
     for( k in keys(x) ) {
-      for( v in validate.key(x[[k]]) ) {
+      for( v in make.keys(x[[k]]) ) {
           if ( ! has.key(v,h) ) h[[v]] <- k 
             else h[[v]] <- append( h[[v]], k )
       }
