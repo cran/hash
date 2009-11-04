@@ -1,3 +1,9 @@
+2009-11-04 Version 1.0.3 (cbrown)
+  + Fixed dependency of R-2.9.0
+
+2009-10-14 (cbrown)
+  + show.R
+    - Handled cases where values are not supported by "format".  These are collapsed as character
 
 2009-10-11 (cbrown) Version 1.0.2
   + revert previous change allowing [[(hash) to accept multiple keys
