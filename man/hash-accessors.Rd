@@ -26,26 +26,26 @@
 \details{
   These are the hash accessor methods. They closely follow an R style.
 
-  \code{$} is a single value look-up operator.  It returns the value for the
-  supplied key.  The key name must be literal and will not be interpreted.
+  \code{$} is a look-up operator for a single key. The key is coerced to valid 
+  hash key via \code{\link{make.keys}} returns the corresponding value.  The 
+  key name must be literal it is not interpreted.  
 
   \code{[[} is the look-up, extraction  operator.  It returns the values of 
-  one keys.  The key names will be interpreted.  If you wish to extract 
-  multiple keys, use the \code{[} accessor.
-
+  a single key. The key names will be interpreted and coerced to a valid hash
+  key via \code{\link{make.keys}}.  
+  
   \code{[} is a subseting operator.  It returns a (sub) hash with the specified
-  keys.  All other keys are removed. 
+  keys.  All other keys are removed.  Key names are coerced via \code{\link{make.keys}} 
 
 }
 
 \value{
   
-  \$ returns the value  for the supplied key.
+  \$ and [[ return the value for the supplied argument. If a key does not 
+  match an existing key, then \code{NULL} is returned with a warning.
 
   [ returns a hash slice, a sub hash with only the defined keys.
 
-  [[ returns a one or more values.
-  
 }
 
 \author{ Christopher Brown }

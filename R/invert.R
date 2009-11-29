@@ -5,9 +5,7 @@
 
 setGeneric( "invert", function(x) standardGeneric( "invert" ) )
 
-setMethod( 
-  "invert" ,
-  "hash" ,
+setMethod( 'invert', 'hash',
   function(x) {
     h <- hash() 
     for( k in keys(x) ) {
@@ -23,7 +21,7 @@ setMethod(
 )
 
 # h <- hash( a=1, b=1:2, c=1:3 )
-# invert.hash(h)
+# invert(h)
 
 inverted.hash <- function(...) invert( hash(...) )
 

@@ -68,7 +68,13 @@
         }
 
 
-        if( length( keys ) == length( values ) ) {
+      # ASSIGNMENT: 
+
+        if( length(keys) == 1 ) {
+
+            assign( keys, values, envir = hash@.Data )  
+
+        } else if( length( keys ) == length( values ) ) {
 
             for( i in 1:length(keys) )
               assign( keys[[i]], values[[i]], envir = hash@.Data )

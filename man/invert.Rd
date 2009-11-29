@@ -17,12 +17,12 @@ inverted.hash(...)
 }
 \arguments{
   \item{x}{ A \code{\link{hash}} object }
-  \item{...}{ Arguments passed to \code{\link{hash}} }
+  \item{...}{ Arguments passed to the \code{\link{hash}} function. }
 }
 \details{
   
-  For \code{invert}, keys and value elements swtich.  Each element of the \code{values(x)} 
-  is coerced to a key.  The value is the associated key.   
+  For \code{invert}, keys and value elements switch.  Each element of the 
+  \code{values(x)} is coerced to a key.  The value becomes the associated key. 
 
   For \code{inverted.hash}, a hash is created than inverted.  It is defined as:
 

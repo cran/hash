@@ -69,7 +69,7 @@
 }
 
 \seealso{
-	See also as \code{\link{environment}}. 
+	\code{\link{hash-accessors}}, \code{\link{environment}}. 
 }
 
 \examples{

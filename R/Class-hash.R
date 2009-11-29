@@ -47,28 +47,14 @@ setClass(
 # --------------------------------------------------------------------- 
 # getGeneric("[<-")
 
-setReplaceMethod(
-	"[" ,
-	signature(
-	  x = "hash" ,
-	  i = "ANY" ,
-	  j = "missing" ,
-      value = "ANY" 
-	) ,
+setReplaceMethod( '[', c(x ="hash", i="ANY" ,j="missing", value="ANY") ,
 	function( x, i, ...,  value ) {
 	  .set( x, i, value, ...  )
 	  return( x )
     }
 )
 
-setReplaceMethod(
-    "[" ,
-    signature(
-      x = "hash" ,
-      i = "ANY" ,
-      j = "missing" ,
-      value = "NULL"
-    ) ,
+setReplaceMethod( '[', c(x="hash", i="ANY", j="missing", value="NULL") ,
     function( x, i, ...,  value ) {
       del( i, x )
       return( x )
@@ -88,23 +74,21 @@ setReplaceMethod(
 #
 # ---------------------------------------------------------------------
 
-setMethod( 
-  "$" ,
-   signature( "hash", "ANY" ) ,
+setMethod( '$' , c( "hash", "ANY" ) ,
    function( x, name ) {
+     key <- make.keys(name)
+     if( ! key %in% keys(x) ) {
+        cat( "key:", key, "not found in hash:", substitute(x), "\n" )
+        return(NULL)
+     } else {
+       return( get( key, x@.Data ) )
+    }
 
-     get( make.keys( name ), x@.Data )
    }
 )
   
 
-setReplaceMethod(
-  "$",
-  signature=signature(
-  	x="hash",
-  	name="ANY",
-  	value="ANY"
-	),
+setReplaceMethod( '$', c(x="hash", name="ANY", value="ANY"),
   function(x, name, value) {
     assign( name, value, envir = x@.Data )
     x
@@ -113,13 +97,7 @@ setReplaceMethod(
 
 # CASE: NULL value
 #   When assign a null values to a hash the key is deleted.
-setReplaceMethod(
-  "$",
-  signature=signature(
-    x="hash",
-    name="ANY",
-    value="NULL"
-    ),
+setReplaceMethod( '$', c( x="hash",name="ANY",value="NULL"),
   function(x, name, value) {
     del(name,x)
     x
@@ -130,20 +108,27 @@ setReplaceMethod(
 # ---------------------------------------------------------------------
 # [[
 # ---------------------------------------------------------------------
-setMethod( 
-  "[[",
-  signature( x="hash", i="ANY", j="missing" ) ,
+setMethod( '[[', signature( x="hash", i="ANY", j="missing" ) ,
   function(x,i, ...) {
     if( length(i) != 1 ) 
       stop( "Can only one hash value with [[. Several keys were provided" )
-    get( make.keys(i), x@.Data )
+    
+      key <- make.keys(i)
+      if( ! key %in% keys(x) ) {
+
+        cat( "key:", key, "not found in hash:", substitute(x), "\n" )
+        return( NULL )
+      
+      } else {
+
+        return( get( key, x@.Data ) )
+
+      }  
     # sapply( make.keys(i), function(k) get(k,x@.Data), ... )
   }
 )
 
-setReplaceMethod(
-  "[[", 
-  signature( x="hash", i="ANY", j="missing", value="ANY" ) ,
+setReplaceMethod( '[[', c(x="hash", i="ANY", j="missing", value="ANY") ,
   function(x,i,value) {
     .set( x, i, value  )
     return( x )
@@ -151,9 +136,7 @@ setReplaceMethod(
 )
 
 # CASE: value=NULL
-setReplaceMethod(
-  "[[",
-  signature( x="hash", i="ANY", j="missing", value="NULL" ) ,
+setReplaceMethod( '[[', c(x="hash", i="ANY", j="missing", value="NULL") ,
   function(x,i,value) {
     # .set( x, i, value  )
     del( i, x )
