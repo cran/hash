@@ -3,9 +3,13 @@
 \alias{hash-accessors}
 \alias{$,hash-method}
 \alias{$<-,hash-method}
-\alias{$<-,hash,ANY,ANY-method}
+\alias{$<-,hash,ANY-method}
 \alias{$<-,hash,ANY,NULL-method}
+\alias{$<-,hash,ANY,ANY-method}
+\alias{$<-,hash,missing,NULL-method}
+\alias{$<-,hash,NULL-method}
 
+\alias{[,hash,missing,missing,missing-method}
 \alias{[,hash,ANY,missing,missing-method}
 \alias{[<-,hash,ANY,missing-method}
 \alias{[<-,hash,ANY,missing,ANY-method}
@@ -22,20 +26,18 @@
   R style accesors for the \code{\link{hash-class}}.
 }
 
-
 \details{
   These are the hash accessor methods. They closely follow an R style.
 
-  \code{$} is a look-up operator for a single key. The key is coerced to valid 
-  hash key via \code{\link{make.keys}} returns the corresponding value.  The 
-  key name must be literal it is not interpreted.  
-
+  \code{$} is a look-up operator for a single key.  The native \code{$}
+  method is used.  The key is taken as a string literal and is not 
+  interpreted.
+  
   \code{[[} is the look-up, extraction  operator.  It returns the values of 
-  a single key. The key names will be interpreted and coerced to a valid hash
-  key via \code{\link{make.keys}}.  
+  a single key. 
   
   \code{[} is a subseting operator.  It returns a (sub) hash with the specified
-  keys.  All other keys are removed.  Key names are coerced via \code{\link{make.keys}} 
+  keys.  All other keys are removed.  
 
 }
 
@@ -50,16 +52,19 @@
 
 \author{ Christopher Brown }
 
-\seealso{ \code{\link{hash}}, \code{\link{.set}}, \code{\link{as.list.hash}} }
+\seealso{ \code{\link{hash}}, \code{\link{values}}, \code{\link{.set}}, \code{\link{as.list.hash}} }
 
 \examples{
+
   h <- hash()
   h <- hash( letters, 1:26 )
 
   h$a 			
   h$a <- "2"   
+  h$z <- NULL          # Removes 'z' from 
 
-  h[[ "a" ]] # c("a","b","c","d") 
+  h[['a']] 
+  h[['a']] <- 23
 
   h[ letters[1:4] ]    # hash with a,b,c,d
   h[ letters[1:4] ] <- 4:1

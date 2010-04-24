@@ -40,8 +40,8 @@
   \code{values}, as named key-value pairs, as a named vector or as implicit
   key, value vectors.  See examples below for each type.  
   
-  Keys and must be coercable to a character vector. Values are restricted
-  to to valid R objects.
+  Keys must be a valid R name, must be a character vector and must not be 
+  the empty string, \code{""}. Values are restricted to any valid R objects.
 
   See \code{\link{.set}} for further details and how key-value vectors of 
   unequal length are interpretted.
@@ -86,7 +86,7 @@
   h[ letters[1:3] ]
 
   h$a<-100
-  h[['a']]<-letters
+  # h[['a']]<-letters
 
   is.hash(h)
   as.list(h)

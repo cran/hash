@@ -10,7 +10,7 @@ setMethod(
 	"del" ,
 	signature( "ANY", "hash" ) ,
 	function ( x, hash ) {
-		rm( list=make.keys(x), envir=hash@.Data )
+	  rm( list=make.keys(x), envir=hash@.Data )
 	}
 )
 

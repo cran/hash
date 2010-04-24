@@ -25,13 +25,13 @@
 }
 
 \note{
-    \code{ clear } should be called prior to removing a hash.  This ensures
+    \code{clear} should be called prior to removing a hash.  This ensures
     that the memory from the environment is freed. 
 }
 
 \author{ Christopher Brown }
-\seealso{ \code{\link{hash}}, \code{\link{del}} to remove specific key-values 
-from the hash }
+\seealso{ \code{\link{del}} to remove specific key-values 
+from the hash. \code{\link{hash}}. }
 
 \examples{
 

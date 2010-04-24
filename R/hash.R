@@ -9,14 +9,12 @@ hash <- function( ... ) {
 
   # INITIALIZE A NEW HASH   
   h <- new( 
-    "hash", 
+    "hash" , 
      new.env( hash = TRUE , parent=emptyenv() )  
   )
 
   if ( length(li) >  0  ) { 
-  
     if( length(li) > 0 ) .set( h, ... )
-
   }
 
   return(h)

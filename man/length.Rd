@@ -11,7 +11,8 @@
 }
 
 \details{
-  Return the number of items in the hash
+  Return the number of items in the hash by calling \code{\link{length}}
+  on the internal environment.
 }
 
 \value{
@@ -20,7 +21,7 @@
 
 \author{ Christpher Brown }
 
-\seealso{ See Also \code{\link{hash}} }
+\seealso{ See Also \code{\link{hash}}, \code{\link{length}} }
 
 \examples{
 

@@ -3,6 +3,8 @@
 \docType{methods}
 
 \alias{format,hash-method}
+\alias{format}
+
 \title{ Methods for Function format in Package 'hash' }
 
 \description{

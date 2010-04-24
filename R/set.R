@@ -3,7 +3,9 @@
 #   Sets a key-value pair for the hash object
 # 
 #  The .set method is an internal method for assigning key-value pairs
-#  if handles both constructor and settor cases.  l
+#  if handles both constructor and settor cases.  It handles a variety
+#  of forms and performs a number of checks.  When a certain type of 
+#  input is known to exist.  It is faster to use assign.  See assign.
 # 
 #  For hash construction it accepts the following formal methods.
 #    
@@ -22,7 +24,11 @@
 
       # EXPLICIT 'keys' AND 'values' ARGUMENTS
       #   .set( keys=letters, values=1:26 )
-        if( identical( names(li) , c('keys', 'values') ) ) {
+      #     if( identical( names(li) , c('keys', 'values') ) ) {
+        if( 
+            'keys'   %in% names(li) && 
+            'values' %in% names(li) 
+        ) {
             keys   <- li[['keys']]
             values <- li[['values']]
         } else 
@@ -34,8 +40,8 @@
             values <- li 
         } else 
  
-      # NAMED VECTOR
-      #   .set( a=1, b=2, c=3 )
+      # NAMED VECTOR:
+      #   .set( c(a=1, b=2, c=3) )
         if( length(li) == 1 ) {
             v <- li[[1]] 
             if( length(names(v) == length(v) ) ) {
@@ -44,7 +50,7 @@
             } 
         } else 
 
-      # IMPLICIT keys AND values
+      # IMPLICIT keys AND values VECTORS
         if( length(li) == 2 ) {
             keys   <- li[[1]]
             values <- li[[2]]    
@@ -62,8 +68,9 @@
             length(keys) != length(values)
         ) {
             stop(
-              "\nKeys of length ", length( keys ),
-              " do not match values of length ", length( values )
+              "Keys of length ", length( keys ),
+              " do not match values of length ", length( values ) , 
+              "\n"
             )
         }
 

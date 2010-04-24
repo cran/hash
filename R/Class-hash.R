@@ -7,14 +7,13 @@
 # 
 # TODO:
 #
-# CONTAINS: hash(class), hash(constuctor), hash(accessors) $ [ [[
+# CONTAINS: hash class and hash accessors ($ [ [[)
 #
 # --------------------------------------------------------------------- 
 setClass( 
-  "hash", 
-  contains = "environment"
+  'hash', 
+  contains = 'environment' ,
 )
-
 
 
 # ----------------------- ACCESSOR METHODS ------------------------------
@@ -24,36 +23,61 @@ setClass(
   #   The [ method provides for the subseting of the object and 
   #   extracting a copy of the slice.
   #
-  #   Provides access to the hash.  
-  #   How to handle missing keys, error, NA
+  #   Notes:
+  #    - Uses 'mget' internally for speed.  Provides access to the hash.  
+  #    - We do not use the .set method for speed.   
   # --------------------------------------------------------------------- 
-  setMethod(
-	  "[" ,
-		signature( 
-			x="hash" ,
-			i="ANY"  ,
-			j="missing" ,
-			drop = "missing"
-		) ,
-		function(x,i,j, ..., drop) {
-			return( hash( i, .get( x, i, ... ) ) )
-  		}
-	)	
+
+  setMethod( 
+       '[' , 
+        signature( x="hash", i="ANY", j="missing", drop = "missing") ,  
+        function( 
+          x,i,j, ... , 
+          # na.action = 
+          #  if( is.null( getOption('hash.na.action') ) ) NULL else 
+          #  getOption('hash.na.action') , 
+          drop 
+        ) {
+  
+          env    <- new.env( hash = TRUE , parent=emptyenv() )    # Will be the new hash
+          for( k in i ) assign( k, get(k,x), env )
+              
+          return( new('hash', env) )
+
+        }
+  )
+
+#  system.time( for( i in 1:10 ) for( ke in kes ) ha[ ke ]  )
+
+  # NB. A slice without any arguments, by definition returns the hash itself
+  setMethod( '[', signature( 'hash', 'missing', 'missing', 'missing' ),
+    function(x,i,j, ..., drop ) {
+      return( x )                  
+    }
+  )
+
+
 
 # --------------------------------------------------------------------- 
 # METHOD: [<-, Hash Slice Replacement Method
 # WHAT DO WE DO IF WE HAVE A DIFFERENT NUMBER OF KEYS AND VALUES?
 #   This should implement a hash slice.
+#   NB.  Although we would like to use assign directly, we use set 
+#        because it deals with the ambiguity of the lengths of the 
+#        key and value vectors.
 # --------------------------------------------------------------------- 
-# getGeneric("[<-")
 
 setReplaceMethod( '[', c(x ="hash", i="ANY" ,j="missing", value="ANY") ,
 	function( x, i, ...,  value ) {
-	  .set( x, i, value, ...  )
+	  .set( x, i, value, ...  )  
 	  return( x )
     }
 )
 
+
+
+
+# hash[ key ] <- NULL : Removes key-value pair from hash
 setReplaceMethod( '[', c(x="hash", i="ANY", j="missing", value="NULL") ,
     function( x, i, ...,  value ) {
       del( i, x )
@@ -67,82 +91,57 @@ setReplaceMethod( '[', c(x="hash", i="ANY", j="missing", value="NULL") ,
 # h[ "foo" ] <- letters # Assigns letters, a vector to "foo"
 # h[ letters ] <- 1:26
 # h[ keys ] <- value
-# 
+# h[ 'a' ] <- NULL 
 
 
 # ---------------------------------------------------------------------
+# $ -- DEPRECATED
+#   This is deprecated since '$' is defined on environments and 
+#   environments can be inherited in objects
 #
 # ---------------------------------------------------------------------
 
-setMethod( '$' , c( "hash", "ANY" ) ,
-   function( x, name ) {
-     key <- make.keys(name)
-     if( ! key %in% keys(x) ) {
-        cat( "key:", key, "not found in hash:", substitute(x), "\n" )
-        return(NULL)
-     } else {
-       return( get( key, x@.Data ) )
-    }
-
-   }
-)
-  
-
-setReplaceMethod( '$', c(x="hash", name="ANY", value="ANY"),
+# SPECIAL CASE: NULL value
+#   When assign a null values to a hash the key is deleted. It is 
+#   idiomatic when setting a value to NULL in R that that value is
+#   removed from a list or environment. 
+#   
+#   If R's behavior changes this will go away.
+#   It is interesting to note that [[ behaves this way
+#
+setReplaceMethod( '$', c( x="hash", value="NULL"),
   function(x, name, value) {
-    assign( name, value, envir = x@.Data )
-    x
-  }
-) 
-
-# CASE: NULL value
-#   When assign a null values to a hash the key is deleted.
-setReplaceMethod( '$', c( x="hash",name="ANY",value="NULL"),
-  function(x, name, value) {
-    del(name,x)
+    remove( list=name, envir=x@.xData )
     x
   }
 )
 
 
 # ---------------------------------------------------------------------
-# [[
+# [[ -- DEPRECATED:
+#   This is deprecated since this is handled by R natively.
+#   Return single value, key,i, is a name/gets interpretted.
+# 
+#   NB: We no longer use .get.
 # ---------------------------------------------------------------------
-setMethod( '[[', signature( x="hash", i="ANY", j="missing" ) ,
-  function(x,i, ...) {
-    if( length(i) != 1 ) 
-      stop( "Can only one hash value with [[. Several keys were provided" )
-    
-      key <- make.keys(i)
-      if( ! key %in% keys(x) ) {
-
-        cat( "key:", key, "not found in hash:", substitute(x), "\n" )
-        return( NULL )
-      
-      } else {
-
-        return( get( key, x@.Data ) )
-
-      }  
-    # sapply( make.keys(i), function(k) get(k,x@.Data), ... )
-  }
-)
 
 setReplaceMethod( '[[', c(x="hash", i="ANY", j="missing", value="ANY") ,
   function(x,i,value) {
-    .set( x, i, value  )
+    assign( i, value, x@.xData )
     return( x )
   }
 )
 
-# CASE: value=NULL
+
+# CASE: hash$value <- NULL
+#   Deletes the value  
 setReplaceMethod( '[[', c(x="hash", i="ANY", j="missing", value="NULL") ,
   function(x,i,value) {
-    # .set( x, i, value  )
-    del( i, x )
+    rm( list=i, envir=x@.xData )
     return( x )
   }
 )
+
 
 # ---------------------------------------------------------------------
 # MISC. FUNCTIONS
@@ -153,6 +152,8 @@ is.hash <- function(x) is( x, "hash" )
 as.list.hash <- function(x, all.names=FALSE, ...) 
   as.list( x@.Data, all.names, ... )
 
-
-
+is.empty <- function(x) { 
+    if( class(x) != 'hash' ) stop( "is.empty only works on hash objects" )
+    if( length(x) == 0 ) TRUE else FALSE  
+}
 

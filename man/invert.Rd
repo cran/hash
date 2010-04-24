@@ -4,10 +4,11 @@
 \alias{inverted.hash}
 \alias{invert-methods}
 \alias{invert,hash-method}                
-\title{
-  Create an inverted hash.
-}
+\title{ Create an inverted hash.}
 \description{
+  THIS IS AN EXPERIMENTAL FUNCTION. THE IMPLEMENTATION OR INTERFACE MAY
+  CHANGE WITHOUT WARNING.
+
   Invert creates an inverted hash from an existing hash.  An inverted hash 
   is one in which the keys and values are exchanged.  
 }
