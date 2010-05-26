@@ -1,3 +1,23 @@
+2010-05-26 Version 2.0.1 (cbrown)
+  - At the request of Michael Hahsler, removed the ODG ASCII ART logo in the 
+    .OnLoad method. It will comeback as soon as I can figure out how to disable
+    it through the appropriate option.
+
+  Hi Christopher,
+
+   thank you for providing the package hash. I am thinking of using
+   it in my rEMM package. Is there a way to make the load message a
+   little less flashy. I include hash in my DESCRIPTION file and the
+   ASCII art comes always up when my package loads.
+
+   Thanks,
+   Michael
+
+   --      Dr. Michael Hahsler, Visiting Assistant Professor
+    Department of Computer Science and Engineering
+    Lyle School of Engineering
+    Southern Methodist University, Dallas, Texas
+
 2010-04-24 Version 2.0.0 (cbrown)
 
  - The coercion of keys make.keys has largely been deprecated.  This might change
