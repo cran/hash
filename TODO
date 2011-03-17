@@ -1,5 +1,14 @@
 
 TODO:
+  - automatic coercion for hash[ x , ... ] where x is a 'name'
+ 
+  - invert not working correctly
+
+  - ha2 <- ha[] : should produce copy and not a reference?
+
+  - Is there a happly function that is like lapply that either passes keys and 
+    values to the functions happly( h, function(k,v,...) ), will it return a hash
+    object?
 
   - Increase perfomance of `[` and `hash` methods
 
@@ -31,8 +40,6 @@ TODO:
       is equal to deleting the key.  h$key <- NULL deletes the key.  So we should
       have no.  
     - NA is retu
-
-
 
 
   - Handle any type for a key, especially integers.

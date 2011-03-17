@@ -36,8 +36,10 @@
     \item{[}{\code{signature(x = "hash", i = "ANY", j = "missing", drop = "missing")}
 : Slice }
 
-    \item{[[<-}{\code{signature(x = "hash", i = "ANY", j = "missing")}: Single key replacement with interpolation.  }
-    \item{[[}{\code{signature(x = "hash", i = "ANY", j = "missing")}: Single key look-up with interpolation  }
+    \item{[[<-}{\code{signature(x = "hash", i = "ANY", j = "missing")}: 
+                Single key replacement with interpolation.  }
+    \item{[[}{\code{signature(x = "hash", i = "ANY", j = "missing")}: i
+              Single key look-up with interpolation  }
 
     \item{\$<-}{\code{signature(x = "hash")}: Single key replacement no interpolation }
     \item{\$}{\code{signature(x = "hash")}: Single key lookup no interpolation }
@@ -70,21 +72,24 @@
 
 \note{ 
 
-  Hash keys must be a valid character value and may not be the empty 
+  HASH KEYS must be a valid character value and may not be the empty 
   string \code{""}. 
 
-  Hash values can be any R value, vector or object. 
+  HASH VALUES can be any R value, vector or object. 
 
-  Because hash values are reference objects in R, all copies will 
-  refer to the original. Changes on the copies will be reflected in the
-  original.
+  PASS-BY REFERENCE. Environments and hashes are special objects in R 
+  because only one copy exists globally. When provide as an argument to 
+  a function, no local copy is made and any changes to the hash in the
+  functions are reflected globally.
 
-  For named lists and vectors of appreciable length hashes provide much quicker 
-  element access. Since hashes are based on environments, environment performance
-  will always exceed that of a hash object, but will lack all the requisite 
-  functions. 
+  PERFORMANCE.  Hashes are based on environments and are 
+  designed to be exceedingly fast using the environments internal 
+  hash table.  For small data structures, a list will out-perform a hash
+  in nearly every case.  For larger data structure, i.e. >100-1000 key
+  value pair the performance of the hash becomes faster.  Much beyond that
+  the performance of the hash far outperforms native lists.  
 
-  Objects of class \code{hash} do not release memory with a call to 
+  MEMORY. Objects of class \code{hash} do not release memory with a call to 
   \code{rm}.  \code{clear} must be called before \code{rm} to properly
   release the memory.
 

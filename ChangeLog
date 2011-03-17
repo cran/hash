@@ -1,3 +1,18 @@
+2011-03-17 Version 2.1.0
+  Changed contact information.
+
+2010-09-26 Version 2.0.2 (cbrown) 
+  Just releasing as version 2.0.2.  Mostly, documentation and benchmarks added.
+  Unreleased to CRAN.
+
+2010-07-25 
+  - demo/hash-benchmarks.R has been expanded.
+
+2010-06-14
+  - man/hash-package.Rd
+  - man/hash-class.Rd: Ammended notes section specifically being more
+    clear about the PASS-BY-REFERENCE BEHAVIOR of HASHES
+
 2010-05-26 Version 2.0.1 (cbrown)
   - At the request of Michael Hahsler, removed the ODG ASCII ART logo in the 
     .OnLoad method. It will comeback as soon as I can figure out how to disable

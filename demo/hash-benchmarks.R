@@ -14,7 +14,7 @@ library(rbenchmark)
 #   keys:   hash's keys
 #   values: hash's values
 
-size   <- 1e5   # The size of the refernece objects. 
+size   <- 2^18   # The size of the refernece objects. 
 keys   <- as.character( sample(1:size) )  # A vector of
 values <- as.character( rnorm( size ) )
 
@@ -81,9 +81,11 @@ cat( "BENCHMARK 1:\n Testing the best method to assign many keys to a new enviro
 cat( "BENCHMARK 2: Accessing a sinle value in a large hash structure\n" )
 
 number.of.lookups <- 1e3
+bm2 <- data.frame() 
+
 
 # LOOP OVER SIX ORDERS OF MAGNITUDES.
-for( size in 2^(0:15) ) {
+for( size in 2^(0:13) ) {
 
   cat( "\nComparing access time for object of size", size, "\n" )
 
@@ -112,18 +114,37 @@ for( size in 2^(0:15) ) {
   ke <- keys[ round(runif(max=size,min=1,n=number.of.lookups )) ]
   
   print(
-    benchmark( 
-      `get/env` = for( k in ke ) get( k, ha@.xData ) ,
-      `get/hash`   = for( k in ke ) get(k, ha) ,
-      `hash`  = for( k in ke ) ha[[k]] ,
+  res <-  benchmark( 
+      # `get/env` = for( k in ke ) get( k, ha@.xData ) ,
+      # `get/hash`   = for( k in ke ) get(k, ha) ,
+      #`hash`  = for( k in ke ) ha[[k]] ,
       `list`  = for( k in ke ) li[[k]] ,
       `vector`= for( k in ke ) ve[[k]] , 
-      replications = 8 ,
+      replications = 10 ,
       order = "relative"
     )
   )
+  res$size <- size
+  bm2 <- rbind( bm2, res )   
 
 }
+
+xyplot( 
+  elapsed ~ size, groups=test, 
+  data=bm2, 
+  type="b", pch=16:20, col=rainbow(5), 
+  lwd=2, main="Reading from data structures", cex=1.2, cex.title=4, 
+  auto.key=list(space = "right", points = FALSE, lines = FALSE, lwd=4, cex=1, col=rainbow(5)) ,
+  scales=list( cex=2 ), 
+  ylab = "Elapsed Time ( per 1K Reads)" , 
+  xlab = "Object Size ( n elements )" 
+)  
+
+
+p <- ggplot(bm2 , aes(x=size, y=elapsed, group=test ))
+p + geom_line() 
+
+ 
 
 cat("\n\n")
 
@@ -143,10 +164,11 @@ cat( "BENCHMARK 3: Slices\n" )
 
 slice.pct  <- 0.01
 n.lookups  <- 100
+bm3 <- data.frame()
 
-for( size in 2^(0:15) ) {
+for( size in 2^(17:18) ) {
 
-  slice.size <- size * slice.pct
+  slice.size <- floor( size * slice.pct ) + 1
   cat( "\nComparing slice time for object of size", size, "with slice pct", slice.pct, "\n" )
 
   # CREATE NAMED-LIST:
@@ -174,6 +196,7 @@ for( size in 2^(0:15) ) {
   # ke <- keys[ round(runif(max=size,min=1,n=slice.size )) ]       
 
  print(
+ res <-  
     benchmark( 
       `hash`   = for( ke in kes ) ha[ ke ] ,
       `list`   = for( ke in kes ) li[ ke ] ,
@@ -184,9 +207,88 @@ for( size in 2^(0:15) ) {
     )
   )
 
+  res$size <- size 
+  bm3 <- if( nrow(bm3)==0) res else rbind( bm3, res ) 
+
 }
 
 
+xyplot(
+  elapsed ~ size, groups=test,
+  data=bm3,
+  type="b", pch=16:20, col=rainbow(5),
+  lwd=2, main="Reading from data structures", cex=1.2, cex.title=4,
+  auto.key=list(space = "right", points = FALSE, lines = FALSE, lwd=4, cex=1, col=rainbow(5)) ,
+  scales=list( cex=2 ),
+  ylab = "Elapsed Time ( per 1K Reads)" ,
+  xlab = "Object Size ( n elements )"
+) 
 
+
+
+cat( "BENCHMARK 3: [[ Single Element ]] <- Writes \n" )
+
+n.writes  <- 100
+bm4 <- data.frame()
+
+for( size in 2^(0:12) ) {
+
+  # CREATE NAMED-LIST:
+  li<-mapply(
+          function(k,v) {
+            li<-list()
+            li[[k]]<-v
+            li
+          } ,
+          keys[1:size] ,
+          values[1:size] ,
+          USE.NAMES=F
+        )
+
+
+  # CREATE NAMED-HASH:
+  ha <- hash( keys[1:size], values[1:size] )
+  
+  # CREATE ENV
+  en <- new.env( hash=TRUE )
+  for( i in 1:size ) assign( keys[[i]], values[[i]],  en )
+
+  # CREATE A VECTOR
+  ve <-  values[1:size]
+  names(ve) <- keys[1:size]
+
+  # CREATE KEYS TO LOOK UP:
+  kes <- keys[ round(runif(n=n.writes,min=1,max=length(keys)  )) ] 
+  # ke <- keys[ round(runif(max=size,min=1,n=slice.size )) ]       
+
+
+ print(
+ res <-
+    benchmark(
+     # `hash`   = for( ke in kes ) ha[[ ke ]] <- "a" ,
+     #  `list`   = for( ke in kes ) li[[ ke ]] <- "a" ,
+      `vector` = for( ke in kes ) ve[[ ke ]] <- "a" ,
+     # `env/assign`   = for( ke in kes ) assign( ke, "a" , en ) ,
+      replications = 5 ,
+      order = "relative"
+    )
+  )
+
+  res$size <- size
+  bm4 <- if( nrow(bm4)==0) res else rbind( bm4, res )
+
+}
+
+
+xyplot(
+  elapsed ~ size, groups=test,
+  data=bm4,
+  type="b", pch=16:20, col=rainbow(5),
+  lwd=2, main="Writing 100 Values to data structure", cex=1.2, cex.title=4,
+  auto.key=list(space = "right", points = FALSE, lines = FALSE, lwd=4, cex=1, col=rainbow(5)) ,
+  scales=list( cex=2 ),
+  ylab = "Elapsed Time ( per 100  Writes" ,
+  xlab = "Object Size ( n elements )"
+)
 
 
