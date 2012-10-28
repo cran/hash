@@ -1,8 +1,8 @@
-cdc4cc711d635a7e3d37dff3e6a8f9d6 *ChangeLog
-83417f1c964925e8f9c5e77e2ea28e91 *DESCRIPTION
+c7b7332ac825ba594563166dc7e73eb0 *ChangeLog
+b7307831e5d840a22bd5c5e546a5041b *DESCRIPTION
 46b11aa21faa2ea81ba47eda491b5b6f *LICENSE
 a141a9594ca758fa9429798252cb7095 *NAMESPACE
-9240e8aa4ea28749444d4f917b62540c *R/Class-hash.R
+c8665429b494dfd85694f2cf2e24aa50 *R/Class-hash.R
 165be1287e9139b77a7ba4d3ccef4a79 *R/clear.R
 265891818de64ca2d0a1ab18c585708e *R/copy.R
 acb792c8a624e7f9cf632a6943288477 *R/del.R
@@ -30,7 +30,7 @@ e08891cb0f95cf4eccd9631d35ca70d3 *dev/hash.actions.R.off
 642aa132467c9d1458ad2241012b2129 *man/has-key.Rd
 4e6362ef595a408c7126e91e170d3f79 *man/hash-accessors.Rd
 fdafd0b432840f1b19c4cd609dcb9373 *man/hash-class.Rd
-085f7e1e3e55d866008c5fcc9a7903dc *man/hash-package.Rd
+89f4ae9bf9d2930891ffa6b215d7024a *man/hash-package.Rd
 cda9a4b013f055b0584aec1326139747 *man/hash.Rd
 e216d087208b36205893278d3f59c044 *man/invert.Rd
 580802887913d59537b0d7585c9b13a5 *man/is.empty.Rd

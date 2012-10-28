@@ -38,12 +38,12 @@ setClass(
           #  getOption('hash.na.action') , 
           drop 
         ) {
-  
-          env    <- new.env( hash = TRUE , parent=emptyenv() )    # Will be the new hash
-          for( k in i ) assign( k, get(k,x), env )
-              
-          return( new('hash', env) )
-
+          
+          ha <- hash()
+          for( k in i ) ha[[k]] <- x[[k]]
+          
+          return(ha)
+          
         }
   )
 
