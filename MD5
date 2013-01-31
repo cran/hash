@@ -1,13 +1,13 @@
-c7b7332ac825ba594563166dc7e73eb0 *ChangeLog
-b7307831e5d840a22bd5c5e546a5041b *DESCRIPTION
+e071dfff274547250770c0432d4b34a9 *ChangeLog
+5e30f9aed9c74b1f048ec337b905060f *DESCRIPTION
 46b11aa21faa2ea81ba47eda491b5b6f *LICENSE
 a141a9594ca758fa9429798252cb7095 *NAMESPACE
-c8665429b494dfd85694f2cf2e24aa50 *R/Class-hash.R
+9240e8aa4ea28749444d4f917b62540c *R/Class-hash.R
 165be1287e9139b77a7ba4d3ccef4a79 *R/clear.R
 265891818de64ca2d0a1ab18c585708e *R/copy.R
 acb792c8a624e7f9cf632a6943288477 *R/del.R
 95fcbd641f7d6a4243f27192def1be22 *R/format.R
-d069223645e6f3b12c0ee2104192584c *R/has-key.R
+0f09ce8977eda4c6cdd01e4489ed052c *R/has-key.R
 defc6d41621ff825de2bc366fbf15e3f *R/hash.R
 0eb83908be1c913faed350b2f81156ec *R/invert.R
 5b4dc00281b8b6f19e2775f5c7532446 *R/keys.R
@@ -30,7 +30,7 @@ e08891cb0f95cf4eccd9631d35ca70d3 *dev/hash.actions.R.off
 642aa132467c9d1458ad2241012b2129 *man/has-key.Rd
 4e6362ef595a408c7126e91e170d3f79 *man/hash-accessors.Rd
 fdafd0b432840f1b19c4cd609dcb9373 *man/hash-class.Rd
-89f4ae9bf9d2930891ffa6b215d7024a *man/hash-package.Rd
+fc0621f0a8c1eef8f27f5bc46281889e *man/hash-package.Rd
 cda9a4b013f055b0584aec1326139747 *man/hash.Rd
 e216d087208b36205893278d3f59c044 *man/invert.Rd
 580802887913d59537b0d7585c9b13a5 *man/is.empty.Rd
@@ -41,4 +41,5 @@ aeb76829a67b2c5d1cc546cada85e2bf *man/make.keys.Rd
 ce972e8aadc577f0efb0138d2f88cc8a *man/values.Rd
 66f3f0b139db26fedc5539026b234a18 *tests/accessors.R
 1bcf265042d9efa6f84b414d15368383 *tests/clear.R
+837f7ff16695e147b735c02ffdd81078 *tests/has.key.R
 1dc934927ed7f3db01c9aecae867354a *tests/set.R
