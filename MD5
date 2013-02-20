@@ -1,8 +1,8 @@
-e071dfff274547250770c0432d4b34a9 *ChangeLog
-5e30f9aed9c74b1f048ec337b905060f *DESCRIPTION
+bdc88b89f081d2b5ac6d31afc73873aa *DESCRIPTION
 46b11aa21faa2ea81ba47eda491b5b6f *LICENSE
 a141a9594ca758fa9429798252cb7095 *NAMESPACE
-9240e8aa4ea28749444d4f917b62540c *R/Class-hash.R
+562bb285d647c21fe754aea42315cd3c *NEWS
+a01969015233782f5b60c38a763040dc *R/Class-hash.R
 165be1287e9139b77a7ba4d3ccef4a79 *R/clear.R
 265891818de64ca2d0a1ab18c585708e *R/copy.R
 acb792c8a624e7f9cf632a6943288477 *R/del.R
@@ -18,7 +18,7 @@ defc6d41621ff825de2bc366fbf15e3f *R/hash.R
 b619daa830168639dcacb959212b0953 *R/values.R
 fc0fa5da8204f1abd22871da73fbf0c7 *R/zzz.R
 3aed66c915dbba587bfc6c14388fd487 *README
-5b7fc0f61828bb10b24d910b51f28ca2 *TODO
+0297e0f0d0caa7267d23352a42a64814 *TODO
 6e3556a4300cb7f333239fa50e855b74 *demo/00Index
 f5c3e0f23cd6c0c2de53b6d11cf057f3 *demo/hash-benchmarks.R
 e08891cb0f95cf4eccd9631d35ca70d3 *dev/hash.actions.R.off
@@ -30,7 +30,7 @@ e08891cb0f95cf4eccd9631d35ca70d3 *dev/hash.actions.R.off
 642aa132467c9d1458ad2241012b2129 *man/has-key.Rd
 4e6362ef595a408c7126e91e170d3f79 *man/hash-accessors.Rd
 fdafd0b432840f1b19c4cd609dcb9373 *man/hash-class.Rd
-fc0621f0a8c1eef8f27f5bc46281889e *man/hash-package.Rd
+11f2695e64e404f77871106352addc59 *man/hash-package.Rd
 cda9a4b013f055b0584aec1326139747 *man/hash.Rd
 e216d087208b36205893278d3f59c044 *man/invert.Rd
 580802887913d59537b0d7585c9b13a5 *man/is.empty.Rd
@@ -39,7 +39,7 @@ e216d087208b36205893278d3f59c044 *man/invert.Rd
 aeb76829a67b2c5d1cc546cada85e2bf *man/make.keys.Rd
 8c8e33f452eb6d6d7ee5204efe253740 *man/set.Rd
 ce972e8aadc577f0efb0138d2f88cc8a *man/values.Rd
-66f3f0b139db26fedc5539026b234a18 *tests/accessors.R
-1bcf265042d9efa6f84b414d15368383 *tests/clear.R
+8fcb898b6dee828dae025f2993d97dfd *tests/accessors.R
+da3a8ed7139396542ab3a09eb6eeb655 *tests/clear.R
 837f7ff16695e147b735c02ffdd81078 *tests/has.key.R
 1dc934927ed7f3db01c9aecae867354a *tests/set.R
