@@ -1,17 +1,20 @@
 Package: hash
 Type: Package
-Title: Full Featured Implementation of Hash Tables/Associative
+Title: Full Feature Implementation of Hash/Associated
         Arrays/Dictionaries
-Version: 2.2.6.2
-Date: 2022-03-21
-Author: Christopher Brown <chris.brown@decisionpatterns.com>
-Maintainer: John Hughes <drjphughesjr@gmail.com>
+Version: 2.2.6.1
+Date: 2013-02-20
+Author: Christopher Brown
+Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Depends: R (>= 2.12.0), methods, utils
 Suggests: testthat
-Description: Implements a data structure similar to hashes in Perl and dictionaries in Python but with a purposefully R flavor. For objects of appreciable size, access using hashes outperforms native named lists and vectors.
+Description: Implements a data structure similar to hashes
+        in Perl and dictionaries in Python but with a purposefully R
+        flavor.  For objects of appreciable size, access using hashes
+        outperforms native named lists and vectors.
 License: GPL (>= 2)
-URL: http://www.johnhughes.org
+LazyLoad: yes
+Packaged: 2019-03-04 10:29:43 UTC; hornik
 NeedsCompilation: no
-Packaged: 2022-03-21 15:05:06 UTC; johnhughes
 Repository: CRAN
-Date/Publication: 2022-03-22 13:10:05 UTC
+Date/Publication: 2019-03-04 10:45:29 UTC
