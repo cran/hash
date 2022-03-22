@@ -1,23 +1,22 @@
+\name{Format hash object for pretty printing}
+
 \docType{methods}
-\name{format}
-\alias{format}
+
 \alias{format,hash-method}
-\title{format - format a hash object for prinint Methods for Function format in Package 'hash'}
-\usage{
-\S4method{format}{hash}(x, max.print = getOption("max.print"), ...)
-}
-\arguments{
-  \item{x}{hash object}
+\alias{format}
 
-  \item{max.print}{maximum numbers of rows to print}
+\title{ Methods for Function format in Package 'hash' }
 
-  \item{...}{further arguments passed to or from other
-  methods.}
-}
 \description{
-Format a hash for printing/showing.
-}
-\seealso{
-\code{\link{format}}
+  Format a hash for printing. 
 }
 
+\section{Methods}{
+\describe{
+  \item{x = "hash"}{ Format a hash for pretty printing. }
+}
+}
+
+\seealso{ See also \code{\link{format}} }
+
+\keyword{methods}

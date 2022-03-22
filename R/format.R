@@ -1,17 +1,6 @@
-#' format - format a hash object for prinint Methods for Function format in Package 'hash'
-#' 
-#' Format a hash for printing/showing.
-#' 
-#' @param x hash object
-#' @param max.print maximum numbers of rows to print
-#' 
-#' @seealso 
-#'   \code{\link{format}}
-#'   
-#' @name format
-#' @aliases format,hash-method format
-#' @docType methods
-
+# -----------------------------------------------------------------------------
+# METHOD: format 
+# -----------------------------------------------------------------------------
 setMethod( "format", "hash", 
 
   function( x, max.print = getOption('max.print'), ... ) {
