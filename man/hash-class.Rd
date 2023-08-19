@@ -5,9 +5,9 @@
 \title{Class "hash" }
 \description{ 
 
-  Implements a S4 hash class in R similar to hashes / associatesd arrays / 
+  Implements a S4 hash class in R similar to hashes / associated arrays / 
   dictionaries in other programming languages.  Where possible, the hash
-  class uses the standard R accessors:  \code{\$}, \code{[} and \code{[[}. 
+  class uses the standard R accessors:  \code{$}, \code{[} and \code{[[}. 
   Hash construction is flexible and takes several syntaxes and all hash 
   operations are supported.
 
@@ -41,8 +41,8 @@
     \item{[[}{\code{signature(x = "hash", i = "ANY", j = "missing")}: i
               Single key look-up with interpolation  }
 
-    \item{\$<-}{\code{signature(x = "hash")}: Single key replacement no interpolation }
-    \item{\$}{\code{signature(x = "hash")}: Single key lookup no interpolation }
+    \item{$<-}{\code{signature(x = "hash")}: Single key replacement no interpolation }
+    \item{$}{\code{signature(x = "hash")}: Single key lookup no interpolation }
 
     Manipulation:
     \item{clear}{\code{signature(x = "hash")}: Remove all key-value pairs from hash }

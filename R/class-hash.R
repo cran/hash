@@ -153,7 +153,7 @@ as.list.hash <- function(x, all.names=FALSE, ...)
   as.list( x@.Data, all.names, ... )
 
 is.empty <- function(x) { 
-    if( class(x) != 'hash' ) stop( "is.empty only works on hash objects" )
+    if(! is(x, "hash") ) stop( "is.empty only works on hash objects" )
     if( length(x) == 0 ) TRUE else FALSE  
 }
 

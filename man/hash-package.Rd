@@ -12,18 +12,6 @@
 
 }
 
-\details{
-  \tabular{ll}{
-    Package: \tab hash\cr
-    Type: \tab Package\cr
-    Version: \tab 2.2.6\cr
-    Date: \tab 2013-02-20\cr
-    License: \tab GPL (>= 2)\cr
-    LazyLoad: \tab yes\cr
-    Depends: \tab R (>= 2.12.0), utils, methods\cr
-  }
-}
-
 \author{
 Christopher Brown
 
@@ -36,15 +24,13 @@ Maintainer: Christopher Brown <chris.brown -at- decisionpatterns -dot- com>
 
     http://www.mail-archive.com/r-help@r-project.org/msg37650.html
 
-    http://tolstoy.newcastle.edu.au/R/help/05/12/index.html\#18192
-
 }
 
 
 \note{ 
   
   R is slowly moving toward a native implementation of hashes 
-  using enviroments, (cf. \code{\link{Extract}}. Access to 
+  using environments, (cf. \code{\link{Extract}}. Access to 
   environments using $ and [[ has been available for some time and
   recently objects can inherit from environments, etc. But many features
   that make hashes/dictionaries great are still lacking, such

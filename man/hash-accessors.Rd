@@ -43,10 +43,10 @@
 
 \value{
   
-  \$ and [[ return the value for the supplied argument. If a key does not 
+  \code{$} and \code{[[} return the value for the supplied argument. If a key does not 
   match an existing key, then \code{NULL} is returned with a warning.
 
-  [ returns a hash slice, a sub hash with only the defined keys.
+  \code{[} returns a hash slice, a sub hash with only the defined keys.
 
 }
 
